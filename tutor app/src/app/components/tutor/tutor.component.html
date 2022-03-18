@@ -1,0 +1,32 @@
+<div class="container" *ngIf="user">
+  <div class="alert alert-danger" *ngIf="error">
+    {{ error }}
+  </div>
+  <mat-card *ngFor="let tutor of tutors$ | async" class="my-2">
+    <mat-card-header class="align-middle">
+      <img mat-card-avatar [src]="tutor.photoUrl || placeholder" />
+      <mat-card-title style="font-size:18px;">{{ tutor.displayName }}
+      </mat-card-title>
+
+      <mat-card-subtitle>Tutor</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="pt-3">
+
+      <mat-chip-list class=" pt-2">
+        Subjects:
+        <mat-chip *ngFor="let sub of tutor.subjects">
+          {{sub}}</mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button id="ViewBtn" [routerLink]="['/tutor', tutor.uid]" routerLinkActive="router-link-active">
+        View Profile
+      </button>
+      <button mat-button (click)="openDialog(tutor)" id="BookBtn" *ngIf="user.roles=='student'">
+        Book Session
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

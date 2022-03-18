@@ -1,0 +1,41 @@
+/*.div-center {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  max-width: 400px;
+}*/
+
+#showreviewbtn:hover {
+  background-color: #05ffea;
+  transition: 1s;
+  opacity: 1;
+}
+
+#viewtutorcard {
+  padding: 20px 0px 20px 20px;
+}
+.star {
+  font-size: 1.05rem;
+  color: #b0c4de;
+}
+
+.filled {
+  color: #1e90ff;
+}
+
+.bad {
+  color: #deb0b0;
+}
+
+.filled.bad {
+  color: #ff1e1e;
+}
+
+.full-width {
+  width: 100%
+}

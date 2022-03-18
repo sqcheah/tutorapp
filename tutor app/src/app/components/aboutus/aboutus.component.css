@@ -1,0 +1,20 @@
+.container, .container1{
+    width: auto;
+    max-width: 1640px;
+    margin: 0 auto;
+    padding-right: 150px;
+    padding-left: 150px;
+    padding-top: 40px;
+
+}
+
+.AboutUsDescription, .ObjDescription{
+    margin-top: 10px;
+}
+img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h3, h4 {
+    text-align: justify;
+}

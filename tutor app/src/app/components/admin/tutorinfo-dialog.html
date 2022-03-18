@@ -1,0 +1,48 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-content class="pt-3 mat-typography">
+      <h1>{{data.firstName| uppercase }} {{data.lastName| uppercase }}</h1>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.email" placeholder="Email" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.contact" placeholder="Contact" />
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <p>Avatar</p>
+      <img [src]="data.photoURL" class="img-fluid" width="100" />
+      <p>Uploaded Video</p>
+      <div class="embed-responsive embed-responsive-16by9 my-5">
+        <video controls="true" class="embed-responsive-item">
+          <source [src]="data.video | safe:'resourceUrl'" type="video/mp4" />
+        </video>
+      </div>
+      <mat-form-field>
+        <mat-select [(ngModel)]="data.status" placeholder="Status">
+          <mat-option [value]="data.status">{{data.status}}</mat-option>
+          <mat-option value="approved">Approve</mat-option>
+          <mat-option value="rejected">Reject</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="subjects" placeholder="Subject" />
+      </mat-form-field>
+      <mat-form-field>
+        <textarea
+          rows="5"
+          cols="40"
+          matInput
+          [(ngModel)]="data.description"
+          placeholder="Description"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-card-actions align="end">
+        <button mat-button (click)="onNoClick()">Cancel</button>
+        <button mat-button (click)="updateTutor()" [disabled]="subjects==''">
+          Update
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>

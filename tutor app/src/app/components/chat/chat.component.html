@@ -1,0 +1,48 @@
+<ng-container *ngIf="chatDetails &&chatInfo$ | async as chatInfo">
+  <section *ngIf="chat$ | async as chat; else noMessage">
+    <mat-divider></mat-divider>
+    <mat-list dense class="conversation-history">
+      <mat-list-item class="py-5" *ngFor="let msg of chat; index as i; last as last;trackBy: trackByCreated"
+        [dir]="msg.uid == uid ? 'rtl' : 'ltr'">
+        {{last?scrollToBottom():''}}
+        <ng-container *ngIf="chatDetails.member[msg.uid] as member">
+          <img style="width:35px; height:35px;" matListAvatar [src]="member.photoURL || placeholder" />
+          <div class="bg-info mx-3" style="min-width: 200px;"
+            [ngClass]=" msg.uid==uid ? 'speech-bubble-right' :'speech-bubble-left'">
+            <div class="mx-2 my-2" style="background-color:#007bff; color: white;" cdkFocusInitial>
+              <p matLine [dir]="msg.uid == uid ? 'ltr' : 'rtl'">
+                {{member.displayName}}
+                <!--[ngClass]=" msg.uid==uid ? 'right' :'left'"-->
+              </p>
+              <p matLine [dir]="msg.uid == uid ? 'ltr' : 'rtl'">
+                {{ msg.createdAt.toDate() | date: " h:mm:ss a" }}
+              </p>
+              <p matLine [dir]="msg.uid == uid ? 'ltr' : 'rtl'">
+                {{ msg.content }}
+              </p>
+            </div>
+          </div>
+        </ng-container>
+      </mat-list-item>
+    </mat-list>
+    <div class="conversation-input">
+      <mat-divider></mat-divider>
+
+      <mat-form-field class="full-width" *ngIf="chatInfo.endTime.toDate() > now ;else chatEnded">
+        <input matInput placeholder="Start chatting..." (keydown.enter)="submit()" [(ngModel)]="newMsg" />
+        <mat-icon matSuffix (click)="submit()">send</mat-icon>
+      </mat-form-field>
+      <ng-template #chatEnded>
+
+        <mat-card style="height: 50px;">
+          Session ended ! You can only view chat history !
+        </mat-card>
+      </ng-template>
+    </div>
+  </section>
+  <ng-template #noMessage>
+    <div class="empty-conversation">
+      No message yet.
+    </div>
+  </ng-template>
+</ng-container>

@@ -1,0 +1,26 @@
+<div class="div-center">
+  <mat-card class="card my-auto" *ngIf="user | async as u">
+    <mat-card-header>
+      <mat-card-title style="font-size:22px;">Profile</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]='u.photoURL || placeholder'>
+    <input class="mt-1" type="file" (change)="upload($event)">
+
+    <mat-card-content class="mt-2" style="font-size:16px;">
+      <p>Name: {{u.displayName}} </p>
+      <p>User ID: {{u.uid}}</p>
+      <p>Email: {{u.email}}</p>
+
+
+      <mat-card-actions align='center'>
+        <button class='btn btn-primary mt-2 mr-5' style="font-size:18px;" (click)="sendPasswordReset(u.email)">Reset
+          Password</button>
+        <button class='btn btn-primary mt-2' style="font-size:18px;" [routerLink]="['/']"
+          routerLinkActive="router-link-active">Back to Home</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+
+
+
+</div>

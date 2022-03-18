@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Create a Post</h1>
+<div mat-dialog-content>
+  <p>Title</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="postData.title" cdkFocusInitial placeholder="New title..." />
+  </mat-form-field>
+  <p>Content</p>
+  <app-editor></app-editor>
+  <p>Tags</p>
+  <mat-form-field class="example-chip-list">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let tag of tags" selectable removable (removed)="remove(tag)">
+        {{tag}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input matInput placeholder="New tag..." [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" matChipInputAddOnBlur (matChipInputTokenEnd)="add($event)"
+        required />
+    </mat-chip-list>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button [disabled]="!postData.title||!child.editorData||child.editorData==''"
+    (click)="submit()">Post</button>
+</div>

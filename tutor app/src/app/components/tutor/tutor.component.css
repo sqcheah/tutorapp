@@ -1,0 +1,17 @@
+#ViewBtn:hover{
+ background:rgb(146, 250, 48);
+ transition: 1s;
+ opacity: 0.8;
+}
+
+#BookBtn:hover {
+ background-color: rgb(48, 250, 75);
+ transition: 1s;
+ opacity: 1;
+
+}
+.container {
+    margin-top:50px;
+    margin-bottom:50px;
+
+}

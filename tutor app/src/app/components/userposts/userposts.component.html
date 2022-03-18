@@ -1,0 +1,33 @@
+<div class="container py-5">
+    <h1 text-center>My Posts</h1>
+    <mat-card *ngFor="let post of posts$ | async" class="my-2">
+      <mat-card-header class="align-middle">
+        <img mat-card-avatar [src]="post.photoUrl || placeholder">
+        <mat-card-title>{{post.displayName}}
+        </mat-card-title>
+        <mat-card-subtitle>{{post.createdAt | date}}</mat-card-subtitle>
+        <span style="flex: 1 1 auto;"></span>
+        <mat-chip [class.success]="post.status=='solved'">{{post.status}}
+        </mat-chip>
+      </mat-card-header>
+      <mat-card-content class="pt-3">
+        <h3>{{post.title}}</h3>
+        <mat-chip-list class="mt-2">
+          <mat-chip *ngFor="let tag of post.tags" [routerLink]="['/discussion','tag',tag]"
+            routerLinkActive="router-link-active">
+            #{{tag}}</mat-chip>
+        </mat-chip-list>
+  
+      </mat-card-content>
+      <mat-card-actions align='end'>
+        <button mat-button [routerLink]=" ['/discussion','post',post.postId]"
+          routerLinkActive="router-link-active" id="ViewBtn">View</button>
+      </mat-card-actions>
+    </mat-card>
+    <div class="text-center mt-5">
+    <button class='btn btn-primary' style='font-size:18px' [routerLink]="['/discussion']" routerLinkActive="router-link-active">Back to Discussion Home
+    </button>
+    </div>
+
+
+  </div>

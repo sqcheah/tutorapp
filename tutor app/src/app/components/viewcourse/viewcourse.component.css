@@ -1,0 +1,11 @@
+mat-list-item {
+  cursor: pointer;
+}
+
+mat-list-item:hover {
+  background-color: grey;
+}
+
+mat-form-field {
+  width: 100%
+}

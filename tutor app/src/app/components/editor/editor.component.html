@@ -1,0 +1,9 @@
+<quill-editor [styles]="{height: '200px'}" [(ngModel)]="editorData" [modules]="modules" debug="false" sanitize="true">
+</quill-editor>
+<div class="alert alert-danger" *ngIf="!editorData||editorData==''">
+  content required
+</div>
+<!--
+<button (click)="toggleDisabled()">
+  {{ isDisabled ? 'Enable editor' : 'Disable editor' }}
+</button>-->

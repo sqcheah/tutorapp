@@ -1,0 +1,55 @@
+<div class="container py-5" *ngIf="user">
+  <ng-container *ngIf="user.roles=='tutor'">
+
+    <mat-card class="py-2">
+        <mat-card-title class="mt-1 mb-4" style="font-size:22px;">
+          Create Content
+        </mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="createCourseChapterContentForm" (submit)="createCourseChapterContent()">
+
+          <div class="form-group ml-2">
+            <mat-label>Title</mat-label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Enter a title" formControlName="title">
+            </mat-form-field>
+          </div>
+          <p class="ml-2">Content
+            <app-editor></app-editor>
+          </p>
+
+          <div class="form-group ml-2">
+            <mat-label>Position</mat-label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Enter a position" formControlName="position">
+            </mat-form-field>
+
+          </div>
+          <div class="text-center ">
+            <button class="btn btn-primary mb-3" type="submit" style="font-size:18px;"
+              [disabled]="!createCourseChapterContentForm.valid || !child.editorData || child.editorData==''">
+              Create Content</button>
+
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <div *ngIf="content$|async as contents" class="py-2">
+
+
+    <mat-card>
+      <mat-nav-list *ngFor="let content of contents">
+        
+        <a mat-list-item [routerLink]="['/course',courseId,chapterId,content.id]"
+          routerLinkActive="router-link-active"> <img class="pr-2 pb-2" src="https://img.icons8.com/cotton/36/000000/laptop.png">{{content.title}}</a>
+      </mat-nav-list>
+    </mat-card>
+
+  </div>
+
+  <button class="btn btn-primary mt-4"  style="font-size:18px;" [routerLink]="['/course',courseId]" routerLinkActive="router-link-active">Back to
+    Chapters List</button>
+
+</div>

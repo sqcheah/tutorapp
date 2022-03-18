@@ -1,0 +1,30 @@
+mat-form-field {
+    width: 100%;
+  
+  }
+  .avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  .signup-form-container {
+    width: 80%;
+    margin: auto;
+  }
+
+  /*The tutorReg mat card storing all the tutor register forms*/
+  #tutorregister-matcard{
+    margin-top:40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+                0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
+  }
+
+#firstnameerror, #lastnameerror, #emailerror, #descriptionerror, #contactnumbererror {
+  font-size: 12px;
+}
+
+#firstname, #lastname, #email, #contact, #description {
+  font-size: 16px;
+}
+

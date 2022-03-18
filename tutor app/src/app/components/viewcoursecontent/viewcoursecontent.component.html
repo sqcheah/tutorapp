@@ -1,0 +1,24 @@
+<div class="container py-4" *ngIf="content$ | async as content;else noContent">
+
+  <h1 class="text-center">{{content.title}}</h1>
+  <div class="py-2">
+    <div *ngIf="content.content">
+      <quill-view-html [content]="content.content"></quill-view-html>
+    </div>
+    <div *ngIf="content.video ">
+
+      <div class="embed-responsive embed-responsive-16by9">
+        <video controls="true" class="embed-responsive-item">
+          <source [src]="content.video | safe:'resourceUrl'" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #noContent class="text-center py-2">
+    No content yet
+  </ng-template>
+  <button class="btn btn-primary mt-4 mb-5" style="font-size:16px;" [routerLink]="['/course',courseId,chapterId]"
+    routerLinkActive="router-link-active">Back to Chapter Content</button>
+</div>

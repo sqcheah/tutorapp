@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="text-center">{{ pageTitle }}</h1>
+  <div class="mb-5">
+    <div *ngFor="let tutor of tutor$ | async">
+      <mat-card class="card mb-2">
+        <mat-card-content class="pt-3">
+          <img mat-card-avatar src="{{tutor.image}}" class="avatar">
+          <h2>Name : {{tutor.firstName}} {{tutor.lastName}}</h2>
+          <h2>Email : {{tutor.email}}</h2>
+          <h2>Status : {{tutor.status}}</h2>
+          <h2>Register Date: {{tutor.registertime | date:'dd-MM-yyyy' }}</h2>
+          <mat-card-actions align='end'>
+            <button mat-stroked-button color="primary" mat-button (click)="openDialog(tutor)">View</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

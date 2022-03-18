@@ -1,0 +1,85 @@
+<div class="container " *ngIf="tutor$ | async as tutor">
+
+  <mat-card class="card mt-5 mb-2" id="viewtutorcard">
+    <mat-card-header>
+      <mat-card-title style="font-size:18px;">{{tutor.displayName}}</mat-card-title>
+      <mat-card-subtitle>{{tutor.email}}</mat-card-subtitle>
+      <img mat-card-avatar [src]='tutor.photoURL || placeholder'>
+    </mat-card-header>
+
+
+    <mat-card-content>
+      <p *ngIf="avgRating | async as avgR">Average Rating: {{avgR | number:"1.0-2"}}</p>
+      <mat-chip-list class=" pt-2">
+        Subjects:
+        <mat-chip *ngFor="let sub of tutor.subjects">
+          {{sub}}</mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+    <button mat-button class="" id="showreviewbtn" style="text-align:left" (click)=" showReview()"
+      *ngIf="!(reviews$ | async)">Show Review</button>
+  </mat-card>
+
+  <div *ngIf="user" id="reviewcontainer">
+
+    <!--
+      <button mat-button class="full-width" style="text-align:left" (click)=" showReview()"
+        *ngIf="!(reviews$ | async)">Show Review</button>
+    -->
+
+    <ng-container *ngIf="reviews$ | async as reviews">
+
+      <div *ngIf="reviews.length>0;else noReview">
+        <mat-card *ngFor="let review of reviews;trackBy: trackByCreated" class="my-2">
+          <div class="media">
+            <img class="align-self-center mr-3" [src]='review.photoURL' alt="Generic placeholder image" width='64px'
+              height='64px'>
+            <div class="media-body mt-2">
+              <div class="clearfix">
+                <div class="float-right">{{review.createdAt | date}}</div>
+                <div><b>{{review.displayName}}</b></div>
+              </div>
+
+              <ngb-rating max="5" [rate]="review.rating" readonly="true">
+                <ng-template let-fill="fill" let-index="index">
+                  <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+              </ngb-rating>
+              <p>{{review.content}}</p>
+            </div>
+          </div>
+
+        </mat-card>
+
+
+
+
+      </div>
+      <mat-card *ngIf="user.roles=='student'&&check==0" class="mt-5">
+        Rating:&nbsp;
+        <ngb-rating max="5" [(rate)]="currentRate">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Enter a review" (keydown.enter)="setReview()" [(ngModel)]="newReview">
+          <mat-icon matSuffix (click)=" setReview()">send</mat-icon>
+        </mat-form-field>
+      </mat-card>
+    </ng-container>
+
+    <ng-template #noReview>
+      <mat-card>
+        No review yet
+      </mat-card>
+    </ng-template>
+
+  </div>
+  <div class="text-center mt-5">
+    <button class='btn btn-primary' style='font-size:18px' [routerLink]="['/tutor']"
+      routerLinkActive="router-link-active">
+      Back to Tutor List</button>
+  </div>
+</div>

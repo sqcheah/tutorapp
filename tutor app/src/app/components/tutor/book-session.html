@@ -1,0 +1,53 @@
+<style>
+  #CancelBtn:hover {
+    background: #ff3c00;
+    transition: 1s;
+    opacity: 0.8;
+  }
+
+  #ConfirmBtn:hover {
+    background-color: rgb(48, 250, 59);
+    transition: 1s;
+    opacity: 1;
+  }
+
+</style>
+
+<div class="container-fluid">
+  <h1 mat-dialog-title>Select A Date and Time</h1>
+  <p style="font-size:18px;">Each session is 2 hours duration</p>
+  <div mat-dialog-content style="height: 350px;">
+    <p></p>
+    <div class="row ">
+      <div class="col">
+        <ngb-datepicker #dp [(ngModel)]="model"></ngb-datepicker>
+      </div>
+      <div class="col">
+
+        <div class="form-group">
+          <ngb-timepicker [formControl]="ctrl" required></ngb-timepicker>
+          <div *ngIf="ctrl.valid" class="small form-text text-success" style="font-size:16px;">Great choice</div>
+          <div class="small form-text text-danger" *ngIf="!ctrl.valid" style="font-size:16px;">
+            <div *ngIf="ctrl.errors['required']">Select a time</div>
+            <div *ngIf="ctrl.errors['tooLate']">Oh no, it's way too late</div>
+            <div *ngIf="ctrl.errors['tooEarly']">It's a bit too early</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="py-2" *ngIf="model&&ctrl.valid">
+      <div class="row">
+        <p>
+          Date and Time selected: {{model?.year}}-{{model?.month}}-{{model?.day}}
+          {{ctrl.value?.hour}}:{{ctrl.value?.minute}}
+        </p>
+      </div>
+      <div mat-dialog-actions align='end'>
+        <button mat-button (click)="cancel()" id="CancelBtn">Cancel</button>
+        <button mat-button [disabled]=" ctrl.invalid" (click)="submit(data)" id="ConfirmBtn">Confirm</button>
+      </div>
+    </div>
+
+  </div>

@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('../node_modules/bootstrap/dist/css/bootstrap.css');
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+
+html,
+body {
+  min-height: calc(100%-2.5rem);
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}
+
+mat-toolbar a {
+  color: white;
+
+}
+
+mat-toolbar a:hover {
+  color: rgb(240, 223, 223);
+  text-decoration: none
+}
+
+
+
+
+/**
+https://www.freakyjolly.com/angular-7-bootstrap-4-add-image-content-slider-carousel-using-ng-bootstrap-in-angular-7-applications/
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='blue' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e")
+}
+*/
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-caption:hover {
+  background: rgba(231, 229, 229, 0.596);
+  color: black;
+}
+
+.carousel-caption {
+  bottom: 0;
+}
+
+::-moz-focus-inner
+{
+  border: 0;
+}

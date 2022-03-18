@@ -1,0 +1,16 @@
+.footer {
+
+  background-color: #fafafa;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  height: 1.5rem;
+  /* Set the fixed height of the footer here */
+  line-height: 2.5rem;
+  text-align: left;
+
+}
+
+h4 {
+  margin-left: 1%;
+}

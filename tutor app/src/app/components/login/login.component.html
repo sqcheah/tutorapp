@@ -1,0 +1,51 @@
+<div class="container">
+
+  <div class="w-50 my-5 mx-auto mat-elevation-z8">
+    <mat-card>
+      <h2 style="font-size: 24px; text-align:center; margin-top:10px;">Login Form</h2>
+      <form [formGroup]="loginForm" (submit)="login()">
+
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" id="emailoutline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" id="email" placeholder="Enter your email" />
+            <mat-error *ngIf="email.hasError('required')" id="emailerror">
+              <mat-icon class="align-middle mr-2">check_circle</mat-icon> Email required.
+            </mat-error>
+            <mat-error *ngIf="email.hasError('pattern')" id="emailerror">
+              <mat-icon class="align-middle mr-2">check_circle</mat-icon> Invalid email.
+            </mat-error>
+          </mat-form-field>
+          <br>
+
+          <mat-form-field appearance="outline" id="passwordoutline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" id="password" type="password"
+              placeholder="Enter your password" />
+
+            <mat-error *ngIf="password.hasError('required')" id="passerror">
+              Password required.
+            </mat-error>
+            <mat-error *ngIf="password.hasError('minlength')" id="passerror">
+              Password must be at least {{password.errors.minlength.requiredLength}} characters.
+            </mat-error>
+            <mat-error *ngIf="password.hasError('pattern')" id="passerror">
+              Password must have at least one capital letter, one small letter and one number.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="loginForm.valid&&errorMessage" class="alert alert-danger">
+          {{errorMessage}}
+        </div>
+        <div class="text-center ">
+          <button class="btn btn-primary mb-3 mr-5" id="SubmitBtn" type="submit"
+            [disabled]="!loginForm.valid">Submit</button>
+          <button class="btn btn-primary mb-3" id="SubmitBtn" type="button" (click)="sendPasswordReset()">Forgot
+            Password</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

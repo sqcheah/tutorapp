@@ -1,0 +1,16 @@
+.success {
+  background-color: lawngreen;
+}
+
+#ViewBtn:hover{
+  background-color: #05ffea;
+  transition: 1s;
+  opacity: 0.8;
+ }
+ #DeleteBtn:hover{
+  background-color: red;
+  transition: 1s;
+  opacity: 0.8;
+ }
+
+

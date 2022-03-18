@@ -1,0 +1,30 @@
+mat-form-field {
+  width: 100%;
+}
+
+#SubmitBtn{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  margin-top: 10px;
+  padding: 10px 15px 8px 15px;
+}
+
+#email {
+  font-size: 16px;
+}
+
+#password {
+  font-size: 16px;
+}
+#emailerror, #passerror, #href{
+  font-size: 12px;
+}
+
+#emailoutline {
+ margin-top:5px;
+}
+#passwordoutline {
+margin-top:7px;
+}
+

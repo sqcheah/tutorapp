@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="w-50 my-5 mx-auto mat-elevation-z8">
+    <mat-card>
+      <h2>Create an Account</h2>
+      <form [formGroup]="registerForm" (submit)="register()">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="username" id="username" placeholder="Enter a username"
+              (keydown)="onKeyDown($event)" />
+            <mat-spinner matSuffix *ngIf="username.pending" diameter="25"></mat-spinner>
+            <mat-icon matSuffix *ngIf="username.valid" [ngStyle]=" {color: 'green' }">check_circle</mat-icon>
+            <mat-error *ngIf="username.hasError('required')">
+              <mat-icon class="align-middle mr-2">error</mat-icon> Username required.
+            </mat-error>
+            <mat-error *ngIf="username.hasError('usernameTaken')">
+              <mat-icon class="align-middle pr-1">error</mat-icon>Username taken...
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" id="email" placeholder="Enter an email" />
+            <mat-spinner matSuffix *ngIf="email.pending" diameter="25"></mat-spinner>
+            <mat-icon matSuffix *ngIf="email.valid" [ngStyle]=" {color: 'green' }">check_circle</mat-icon>
+
+            <mat-error *ngIf="email.hasError('required')">
+              <mat-icon class="align-middle mr-2">error</mat-icon> Email required.
+            </mat-error>
+            <mat-error *ngIf="email.hasError('pattern')">
+              <mat-icon class="align-middle mr-2">error</mat-icon> Invalid email.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" id="password" type="password" placeholder="Enter a password" />
+            <mat-spinner matSuffix *ngIf="password.pending" diameter="25"></mat-spinner>
+            <mat-icon matSuffix *ngIf="password.valid" [ngStyle]=" {color: 'green' }">check_circle</mat-icon>
+
+            <mat-error *ngIf="password.hasError('required')">
+              <mat-icon class="align-middle mr-2">error</mat-icon> Password required.
+            </mat-error>
+            <mat-error *ngIf="password.hasError('minlength')">
+              <mat-icon class="align-middle mr-2">error</mat-icon> Password must be at least
+              {{password.errors.minlength.requiredLength}} characters.
+            </mat-error>
+            <mat-error *ngIf="password.hasError('pattern')">
+              <mat-icon class="align-middle mr-2">error</mat-icon>
+              Password must have at least one capital letter, one small letter and one number.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group" [class.pt-2]="password.hasError('pattern')">
+          <mat-form-field appearance="outline">
+            <mat-label for="Confirm Password">Confirm Password</mat-label>
+            <input matInput formControlName="confirmPass" [disableControl]="password.invalid" id="confirmPass"
+              type="password" placeholder="Enter your password again" />
+            <mat-spinner matSuffix *ngIf="confirmPass.pending" diameter="25"></mat-spinner>
+            <mat-icon matSuffix *ngIf="confirmPass.touched && confirmPass.valid" [ngStyle]=" {color: 'green' }">
+              check_circle</mat-icon>
+            <mat-hint *ngIf="confirmPass.disabled">
+              Fill in the above password field first
+            </mat-hint>
+            <mat-error *ngIf="confirmPass.hasError('passwordmatch')">
+              <mat-icon class="align-middle mr-2">error</mat-icon>
+              Password does not match!
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div *ngIf="registerForm.valid && errorMessage" class="alert alert-danger">
+          {{errorMessage}}
+        </div>
+        <div class="text-center ">
+          <button class="btn btn-primary mb-3" type="submit" [disabled]="!registerForm.valid">Submit</button><br>
+          <a [routerLink]="['/login']" routerLinkActive="router-link-active">
+            Already register?</a>
+        </div>
+
+
+      </form>
+    </mat-card>
+  </div>
+  <div class="text-center">
+
+    <button class="btn btn-secondary center" [routerLink]="['/']" routerLinkActive="router-link-active" mat-button>
+      Back to Home</button>
+    <br>
+
+  </div>
+</div>

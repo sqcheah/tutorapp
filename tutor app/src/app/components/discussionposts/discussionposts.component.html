@@ -1,0 +1,84 @@
+<div *ngIf="user">
+  <div class="container" *ngIf="post$ | async as post">
+
+    <mat-card class="my-2 ">
+
+      <mat-card-header class="align-middle">
+        <img mat-card-avatar [src]="post.photoUrl || placeholder">
+
+        <mat-card-title>{{post.displayName}}
+        </mat-card-title>
+
+        <mat-card-subtitle>{{post.createdAt | date}}</mat-card-subtitle>
+        <span style="flex: 1 1 auto;"></span>
+        <mat-chip disableRipple [class.success]="post.status=='solved'">{{post.status}}
+        </mat-chip>
+        <ng-container *ngIf="post.uid==user.uid">
+
+          <button mat-button [matMenuTriggerFor]="optionMenu">
+            <mat-icon>more_vert</mat-icon>
+
+          </button>
+          <mat-menu #optionMenu="matMenu">
+            <button mat-menu-item (click)="delete(post.postId,post.tags)">Delete</button>
+            <button mat-menu-item (click)="resolve(post.postId,post.tags)">Resolved</button>
+          </mat-menu>
+        </ng-container>
+      </mat-card-header>
+
+      <mat-card-content class="pt-3">
+        <h3>{{post.title}}</h3>
+        <quill-view-html [content]="post.content"></quill-view-html>
+        <mat-chip-list class=" pt-2">
+          <mat-chip *ngFor="let tag of post.tags" [routerLink]="['/discussion','tag',tag]"
+            routerLinkActive="router-link-active">
+            #{{tag}}</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card>
+
+    <button class="full-width mb-5" mat-button (click)="getComments()" *ngIf="!(comments$ | async)">Show
+      Comments</button>
+
+
+    <ng-container *ngIf="comments$ | async as comments">
+
+      <div *ngIf="comments.length>0;else noComment">
+        <mat-card *ngFor="let comment of comments;trackBy: trackByCreated" class="my-2">
+
+          <div class="media">
+            <img class="align-self-center mr-3" [src]='comment.photoURL || placeholder' alt="Generic placeholder image"
+              width='64px' height='64px'>
+            <div class="media-body">
+              <div class="clearfix">
+                <div class="float-right">{{comment.createdAt | date}}</div>
+                <div><b>{{comment.displayName}}</b></div>
+              </div>
+
+              <p [innerHTML]="comment.content | safe:'html'"></p>
+            </div>
+          </div>
+          <mat-card-actions align="end">
+            <button mat-button *ngIf="user.roles=='admin'" (click)="deleteComment(postId,comment.id)">Delete</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+
+      <mat-form-field class="full-width py-5" *ngIf="post.status=='pending'">
+        <textarea matInput placeholder="Enter a comment" (keydown.enter)="setComment()"
+          [(ngModel)]="newComment"></textarea>
+        <mat-icon matSuffix (click)=" setComment()">send</mat-icon>
+      </mat-form-field>
+
+
+    </ng-container>
+    <ng-template #noComment>
+      <mat-card>
+        No comments yet
+      </mat-card>
+
+    </ng-template>
+
+  </div>
+</div>

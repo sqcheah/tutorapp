@@ -1,0 +1,130 @@
+<div class="container py-5" *ngIf="user">
+  <ng-container *ngIf="user.roles=='tutor'">
+
+    <mat-card class="py-3">
+      <mat-card-title class=" mt-1 mb-4" style="font-size:22px;">
+        Create Chapter
+      </mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="createChapterForm" (submit)="createCourseChapter()">
+
+          <div class="form-group">
+            <mat-label>Chapter Name</mat-label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Enter a chapter name" formControlName="chapterName">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-label>Position</mat-label>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Enter a position" formControlName="position">
+            </mat-form-field>
+
+          </div>
+          <div class="text-center ">
+            <button class="btn btn-primary mb-3" style="font-size:18px;" type="submit"
+              [disabled]="!createChapterForm.valid">Create
+              Chapter</button>
+
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <div [ngSwitch]="courseId" class="py-2">
+
+    <mat-card>
+      <mat-nav-list>
+        <div *ngSwitchCase="'7aFRKFULz6aHWoMAw2Qh'">
+
+
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 1']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 1
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 2']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 2
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 3']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 3
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 4']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 4
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 5']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 5
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 6']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 6
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 7']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 7
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 8']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 8
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 9']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 9
+          </a>
+
+        </div>
+        <div *ngSwitchCase="'WTXdCMS0rjRyqlzdlKMs'">
+
+          <a mat-list-item [routerLink]="['/course',courseId,'core']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Core
+          </a>
+
+        </div>
+        <div *ngSwitchCase="'btXc1mBuhasKuVHRTYYB'">
+          <a mat-list-item [routerLink]="['/course',courseId,'intro']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Introduction
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 1']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 1
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 2']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 2
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 3']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 3
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 4']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 4
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 5']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 5
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 6']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 6
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 7']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 7
+          </a>
+          <a mat-list-item [routerLink]="['/course',courseId,'chapter 8']" routerLinkActive="router-link-active">
+            <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png"> Chapter 8
+          </a>
+
+        </div>
+        <div *ngSwitchDefault>
+
+          <div *ngIf="content$ | async as contents">
+            <div *ngFor="let content of contents">
+              <a mat-list-item [routerLink]="['/course',courseId,content.id]" routerLinkActive="router-link-active">
+                <img class="pr-2 pb-1" src="https://img.icons8.com/cotton/36/000000/laptop-coding.png">
+                {{content.chapterName}}
+              </a></div>
+          </div>
+
+
+        </div>
+
+      </mat-nav-list>
+    </mat-card>
+
+
+
+    <button class="btn btn-primary mt-5" style="font-size:18px;" [routerLink]="['/course']"
+      routerLinkActive="router-link-active">Back to Course
+      List</button>
+  </div>
+</div>

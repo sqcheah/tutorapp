@@ -1,0 +1,53 @@
+<div class="container py-5" *ngIf="sessions$ | async as sessions ">
+  <div class="text-center">
+    <h1>My sessions</h1>
+  </div>
+  <ngb-tabset justify="justified">
+    <ngb-tab title="Upcoming">
+      <ng-template ngbTabContent>
+        <div *ngFor="let session of sessions;index as i; trackBy: trackBySession" class="py-2">
+          <mat-card class="py-3" *ngIf="session.endTime.toDate() > now">
+            <mat-card-actions align="start">
+              <mat-card-title class="pl-3" style="font-size:18px"> Session with
+                {{user.roles=='tutor'?session.studentName:session.tutorName}}</mat-card-title>
+              <mat-card-content>
+                <p class="pl-3">Scheduled for: {{session.startTime.toDate()| date:"yyyy-MM-dd HH:mm aa"}}</p>
+                <p *ngIf="session.startTime.toDate() > now && ((session.endTime.toDate()-now-86400000)<0)">Time
+                  Left:&nbsp;
+                  <countdown  [config]="{stopTime: session.startTime.toDate()}" (event)="eventHandler($event)">
+                  </countdown>
+                </p>
+              </mat-card-content>
+            </mat-card-actions>
+
+            <mat-card-actions align="end">
+              <button mat-button [routerLink]="['/chats',session.chatId]"
+                [disabled]="(session.startTime.toDate() >now  ) || ((session.endTime.toDate()-now-86400000)>0)"
+                routerLinkActive="router-link-active" id="ChatBtn">Start
+                Chat</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="History">
+      <ng-template ngbTabContent>
+        <div *ngFor="let session of sessions;index as i; trackBy: trackBySession" class="py-2">
+          <mat-card class="py-3" *ngIf="session.endTime.toDate() <= now">
+            <mat-card-actions align="start">
+              <mat-card-title class="pl-3" style="font-size:18px"> Session with
+                {{user.roles=='tutor'?session.studentName:session.tutorName}}</mat-card-title>
+              <mat-card-content>
+              </mat-card-content>
+            </mat-card-actions>
+
+            <mat-card-actions align="end">
+              <button mat-button [routerLink]="['/chats',session.chatId]" routerLinkActive="router-link-active"
+                id="ChatBtn">View Chat</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

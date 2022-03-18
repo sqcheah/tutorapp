@@ -1,0 +1,22 @@
+<div class="dropzone" drop-zone (hovered)="toggleHover($event)" (dropped)="onDrop($event)"
+  [class.hovering]="isHovering">
+
+
+  <h3>AngularFire Drop Zone</h3>
+  <p>Drag and Drop a File</p>
+</div>
+
+<h3>Uploads</h3>
+
+<div *ngFor="let file of files">
+  <upload-task [file]="file"></upload-task>
+</div>
+
+<button type="button" (click)="getImageFromService()">Get Image</button>
+
+<div *ngIf="imageToShow">
+  <img [src]="imageToShow" alt="Place image title">
+</div>
+<div *ngIf="error">
+  {{error}}
+</div>
