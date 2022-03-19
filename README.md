@@ -1,7 +1,10 @@
 # tutorapp - capstone 2019
 This project is about a mentor mentee system.
+
 This project is built with Angular.
+
 Backend: Firebase (Authentication, Firestore, File Storage, Hosting)
+
 Frontend: Angular Material, Bootstrap
 
 Feature:
