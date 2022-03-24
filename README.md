@@ -1,4 +1,4 @@
-# tutorapp - capstone 2019
+# tutorwebapp - capstone 2019
 This project is about a mentor mentee system.
 
 This project is built with Angular.
